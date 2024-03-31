@@ -1,9 +1,27 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { useLiff } from "@/hooks/LiffProvider";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { liff } = useLiff();
+  const [profile, setProfile] = useState<any | null>(null);
+
+  useEffect(() => {
+    if (!liff) return;
+    if (liff.isLoggedIn()) {
+      liff.login();
+      (async () => {
+        const profile = await liff.getProfile();
+        setProfile(profile);
+      })();
+    }
+  }, [liff]);
+
+  console.log(profile);
+
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
