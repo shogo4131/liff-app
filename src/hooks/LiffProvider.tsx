@@ -34,8 +34,10 @@ export const LiffProvider: FC<PropsWithChildren<{ liffId: string }>> = ({
         // @ts-ignore
         await liff.init({ liffId, mock: true });
         liff.login();
+        console.log("develop");
       } else {
         await liff.init({ liffId });
+        console.log("prod");
       }
       setLiff(liff);
     } catch (error) {
