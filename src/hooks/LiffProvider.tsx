@@ -37,6 +37,7 @@ export const LiffProvider: FC<PropsWithChildren<{ liffId: string }>> = ({
         console.log("develop");
       } else {
         await liff.init({ liffId });
+        liff.login();
         console.log("prod");
       }
       setLiff(liff);
