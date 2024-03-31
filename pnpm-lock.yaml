@@ -8,6 +8,9 @@ dependencies:
   '@line/liff':
     specifier: ^2.23.2
     version: 2.23.2
+  '@line/liff-mock':
+    specifier: ^1.0.3
+    version: 1.0.3(@line/liff@2.23.2)
   next:
     specifier: 14.1.4
     version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
@@ -763,6 +766,14 @@ packages:
     transitivePeerDependencies:
       - debug
       - supports-color
+    dev: false
+
+  /@line/liff-mock@1.0.3(@line/liff@2.23.2):
+    resolution: {integrity: sha512-9js4YXheVV4rTXvvLIMVSqC6ikmD7mRrpbFqFZBemqCmSu3YSfljQs1fzKVy9LVUCREmsESLwWqa57jS3LY45g==}
+    peerDependencies:
+      '@line/liff': '>= 2.19.0'
+    dependencies:
+      '@line/liff': 2.23.2
     dev: false
 
   /@line/liff@2.23.2:

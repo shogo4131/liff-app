@@ -11,8 +11,8 @@ export default function Home() {
 
   useEffect(() => {
     if (!liff) return;
+    console.log(liff.isLoggedIn());
     if (liff.isLoggedIn()) {
-      liff.login();
       (async () => {
         const profile = await liff.getProfile();
         setProfile(profile);

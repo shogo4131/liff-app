@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import { Liff } from "@line/liff";
+import { LiffMockPlugin } from "@line/liff-mock";
 
 const LiffContext = createContext<{
   liff: Liff | null;
@@ -27,7 +28,15 @@ export const LiffProvider: FC<PropsWithChildren<{ liffId: string }>> = ({
     try {
       const liffModule = await import("@line/liff");
       const liff = liffModule.default;
-      await liff.init({ liffId });
+
+      if (process.env.NODE_ENV === "development") {
+        liff.use(new LiffMockPlugin());
+        // @ts-ignore
+        await liff.init({ liffId, mock: true });
+        liff.login();
+      } else {
+        await liff.init({ liffId });
+      }
       setLiff(liff);
     } catch (error) {
       setLiffError((error as Error).toString());
